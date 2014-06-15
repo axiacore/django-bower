@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# Author: AxiaCore S.A.S. http://axiacore.com
+
 import json
 
 from django.test import TestCase
