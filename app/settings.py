@@ -10,6 +10,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEST_PROJECT_APPS = (
+    'app',
+)
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -17,7 +21,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+
+    # Pipeline
+    'pipeline',
+
+    # Bower
+    'djangobower',
+
+) + TEST_PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -47,7 +58,50 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Static files finders
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+# Pipeline settings
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
+
+# Static 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+# Bower
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'app/static')
+
+# Installed bower apps
+BOWER_INSTALLED_APPS = (
+    'jquery#1.9',
+    'underscore',
+    'bootstrap',
+)
+
+# Pipeline
+PIPELINE_CSS = {
+    
+    # Libraries
+    'libraries': {
+        'source_filenames': (   
+            'bower_components/bootstrap/dist/css/bootstrap.css',
+        ),
+        'output_filename': 'css/libs.min.css',
+    },
+
+    # Base styles
+    'base': {
+        'source_filenames': (
+            'css/cover.css',
+        ),
+        'output_filename': 'css/main.min.css',
+    },
+}
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.BCryptPasswordHasher',

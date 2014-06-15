@@ -1,0 +1,133 @@
+{% extends 'layout/base.html' %}
+{% load staticfiles compressed %}
+{% compressed_css 'libs' %}
+
+{% block title %}Django Bower Example{% endblock %}
+
+<!-- Styles -->
+{% block css %}
+
+	<!-- Dependencies -->
+	{% compressed_css 'libraries' %}
+
+	<!-- Styles --> 
+	{% compressed_css 'base' %}
+
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+<div class="site-wrapper">
+
+  	<div class="site-wrapper-inner">
+
+    	<div class="cover-container">
+
+      		<div class="masthead clearfix">
+        		<div class="inner">
+          			<h3 class="masthead-brand">Django Bower</h3>
+          			<ul class="nav masthead-nav">
+            			<li class="active"><a href="#">Home</a></li>
+		            	<li><a href="http://axiacore.com/blog/">Original Article</a></li>
+		            	<li><a href="https://github.com/axiacore">GitHub</a></li>
+		          </ul>
+        		</div>
+      		</div>
+
+	      	<div class="inner cover">
+	        	<h1 class="cover-heading"><a href="http://bower.io/">Bower</a> In Your Django Projects.</h1>
+	        	<p class="lead"><a href="http://bower.io/">Bower</a> is an easy to use FrontEnd Package manager, even though its popularity it's not very used in <a href="http://djangoproject.com">Django</a> projects due the need of installing <a href="http://nodejs.org">Node JS</a> if the projects is being built on the server among other reasons.</p>
+	        	<p class="lead">
+	          		<a href="#" class="btn btn-lg btn-default">View Sample Project on GitHub</a>
+	        	</p>
+	      	</div>
+
+	      	<!-- Adding dependencies -->
+	      	<div class="inner cover">
+	      		<h3>Adding Dependencies</h3>
+	      		<p>In your <code>settings.py</code> file describe the dependencies you want to use.</p>
+	      		<pre class="text-left"># Project dependencies
+BOWER_INSTALLED_APPS = (
+    'jquery#1.9',
+    'underscore',
+    'bootstrap',
+)</pre>
+	      	</div>
+
+	      	<!-- Installing dependencies -->
+	      	<div class="inner cover">
+	      		<h3>Installing Dependencies</h3>
+	      		<p>From the command line</p>
+	      		<pre class="text-left">
+./manage.py bower install</pre>
+	      	</div>
+
+	      	<!-- Including Dependencies -->
+	      	<div class="inner cover">
+	      		<h3>Including dependencies using Pipeline</h3>
+	      		<p>From the command line</p>
+	      		<pre class="text-left">PIPELINE_CSS = {
+    
+    # Libraries
+    'libraries': {
+        'source_filenames': (   
+            'bower_components/bootstrap/dist/css/bootstrap.css',
+        ),
+        'output_filename': 'css/libs.min.css',
+    }
+}</pre>
+	      	</div>
+
+	      	<!-- Including Dependencies -->
+	      	<div class="inner cover">
+	      		<h3>Template Inclusion</h3>
+	      		<p>From the command line</p>
+	      		<pre class="text-left">
+&#123;% load compressed %&#125;
+
+...
+
+&lt;!-- Include pipeline dependencies --&gt;
+&#123;% compressed_css 'libraries' %&#125;
+
+...
+</pre>
+	      	</div>
+
+	      	<!-- Including Dependencies -->
+	      	<div class="inner cover">
+	      		<h3>Jenkins Deploy</h3>
+	      		<p>In your <code>jenkins.sh</code> build file, make sure that bower components get fetched befor statics are collected.</p>
+	      		<pre class="text-left">#...
+
+# Install bower 
+./manage.py bower install
+
+# Collect static files
+./manage.py collectstatic --noinput --ignore=*.sass
+
+#...
+</pre>
+	      	</div>
+
+	      	<!-- Including Dependencies -->
+	      	<div class="inner cover">
+	      		<h3>.gitignore configuration</h3>
+	      		<p>As bower components get fetch on build, we don't need to have them in our repository.</p>
+	      		<pre class="text-left"># Ignore bower components
+/app/static/bower_components/
+</pre>
+	      	</div>
+
+	      	<div class="mastfoot">
+	        	<div class="inner">
+	          		<p>Built with love by <a href="http://axiacore.com">AxiaCore</a>.</p>
+	        	</div>
+	      	</div>
+
+    	</div>
+
+  	</div>
+
+</div>
+{% endblock %}

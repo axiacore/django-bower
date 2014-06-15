@@ -1,22 +1,11 @@
 # Framework
-#Django==1.6
+# Django==1.6
 http://www.djangoproject.com/m/releases/1.6/Django-1.6b1.tar.gz
 
 # Libs
 pep8==1.4.6
-psycopg2==2.5.1
-py-bcrypt==0.3
-raven==3.4.0
-Pillow==2.0.0
-South==0.8.1
-Sphinx==1.2b1
 
 # Apps
-django-axes==1.3.3
-django-grapelli==2.4.5
-https://github.com/maraujop/django-crispy-forms/archive/dev.zip
-#django-crispy-forms==1.4.0
-django-extensions==1.1.1
 django-pipeline==1.3.14
 django-jenkins==0.14.0
-coverage==3.4
+django-bower==5.0.1
