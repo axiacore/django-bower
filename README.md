@@ -3,6 +3,8 @@ Using Bower In Django
 
 This repository illustrates how to use [Bower](http://bower.io/) to manage front end dependencies in [Django](https://www.djangoproject.com/) projects.
 
+![](https://raw.githubusercontent.com/PabloVallejo/django-bower/master/screenshot.png)
+
 ## Original Article
 > [View Original Article](http://axiacore.com/blog/effective-dependency-management-django-using-bower).
 
