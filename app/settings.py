@@ -76,13 +76,6 @@ STATIC_URL = '/static/'
 # Bower
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'app/static')
 
-# Installed bower apps
-BOWER_INSTALLED_APPS = (
-    'jquery#1.9',
-    'underscore',
-    'bootstrap',
-)
-
 # Pipeline
 PIPELINE_CSS = {
     
@@ -101,6 +94,17 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/main.min.css',
     },
+}
+
+PIPELINE_JS = {
+    
+    # Libraries
+    'libraries': {
+        'source_filenames': (
+            'bower_components/jquery/dist/jquery.js'
+        ),
+        'output_filename': 'js/libs.min.js',
+    }
 }
 
 PASSWORD_HASHERS = (
